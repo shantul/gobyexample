@@ -39,10 +39,17 @@ func main() {
 	}
 
 	for _, i := range []int{7, 42} {
-		if r, e := f2(i); e != nil {
+		r, e := f2(i) //same as the if condition above, just split into two lines
+		if e != nil {
 			fmt.Println("f2 Failed", e)
 		} else {
 			fmt.Println("f2 Worked", r)
 		}
+	}
+
+	_, e := f2(42)
+	if ae, ok := e.(*argError); ok {
+		fmt.Println(ae.code)
+		fmt.Println(ae.message)
 	}
 }
